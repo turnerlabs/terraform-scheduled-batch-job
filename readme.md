@@ -15,7 +15,7 @@ provider "aws" {
 }
 
 module "scheduled-batch-job" {
-  source = "github.com/turnerlabs/terraform-scheduled-batch-job?ref=v0.1"
+  source = "github.com/turnerlabs/terraform-scheduled-batch-job?ref=v0.1.0"
 
   name                 = "my-scheduled-job"
   batch_job_definition = "my-job-definition"
