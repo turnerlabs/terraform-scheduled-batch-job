@@ -21,7 +21,8 @@ module "scheduled-batch-job" {
   batch_job_definition = "my-job-definition"
   batch_job_queue      = "my-job-queue"
   schedule_expression  = "rate(1 hour)"
-  tags                 = "${map("application", "test-app", "environment", "dev")}"  
+  
+  tags = "${map("team", "my-team", "contact-email", "my-team@my-company.com", "application", "my-app", "environment", "dev", "customer", "my-customer")}"  
 }
 ```
 
