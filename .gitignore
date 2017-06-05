@@ -1,0 +1,6 @@
+.terraform
+terraform.tfstate
+lambda.zip
+.DS_Store
+terraform.tfstate.backup
+test
