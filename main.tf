@@ -49,7 +49,7 @@ data "archive_file" "lambda_zip" {
   type                    = "zip"
   source_content          = "${data.template_file.lambda_source.rendered}"
   source_content_filename = "index.js"
-  output_path             = "lambda.zip"
+  output_path             = "lambda-${var.name}.zip"
 }
 
 resource "aws_lambda_function" "func" {
@@ -68,8 +68,6 @@ resource "aws_lambda_permission" "permission" {
   function_name = "${aws_lambda_function.func.function_name}"
   principal     = "events.amazonaws.com"
   source_arn    = "${aws_cloudwatch_event_rule.rule.arn}"
-
-  # qualifier     = "${aws_lambda_alias.alias.name}"
 }
 
 resource "aws_lambda_alias" "alias" {
