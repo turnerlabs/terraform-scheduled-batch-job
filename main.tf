@@ -5,6 +5,10 @@ variable "batch_job_definition" {}
 variable "batch_job_queue" {}
 variable "schedule_expression" {}
 
+variable "is_enabled" {
+  default = "true"
+}
+
 variable "tags" {
   type = "map"
 }
@@ -82,6 +86,7 @@ resource "aws_cloudwatch_event_rule" "rule" {
   name                = "${var.name}"
   description         = "fires the ${var.name} function on schedule: ${var.schedule_expression}"
   schedule_expression = "${var.schedule_expression}"
+  is_enabled          = "${var.is_enabled}"
 }
 
 resource "aws_cloudwatch_event_target" "target" {

@@ -15,12 +15,13 @@ provider "aws" {
 }
 
 module "scheduled-batch-job" {
-  source = "github.com/turnerlabs/terraform-scheduled-batch-job?ref=v0.1.1"
+  source = "github.com/turnerlabs/terraform-scheduled-batch-job?ref=v0.2.0"
 
   name                 = "my-scheduled-job"
   batch_job_definition = "my-job-definition"
   batch_job_queue      = "my-job-queue"
   schedule_expression  = "rate(1 hour)"
+  is_enabled           = "true"
   
   tags = "${map("team", "my-team", "contact-email", "my-team@my-company.com", "application", "my-app", "environment", "dev", "customer", "my-customer")}"  
 }
