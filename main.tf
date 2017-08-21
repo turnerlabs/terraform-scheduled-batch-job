@@ -1,14 +1,25 @@
-# vars
+/**
+ * A Terraform module representing a scheduled Batch job. Uses a Cloud Watch Event Rule and a Lambda function to submit the Batch job on a cron schedule
+*/
+
+# the name of the scheduled job
 variable "name" {}
 
+# the batch job definition to run
 variable "batch_job_definition" {}
+
+# the batch job queue to submit to
 variable "batch_job_queue" {}
+
+# the schedule to execute the job on
 variable "schedule_expression" {}
 
+# whether or not the job will be run
 variable "is_enabled" {
   default = "true"
 }
 
+# tags
 variable "tags" {
   type = "map"
 }
@@ -147,12 +158,12 @@ resource "aws_iam_role_policy_attachment" "lambda-cw" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
 }
 
-# output
-
+# the created cloudwatch event rule
 output "cloudwatch_event_rule_arn" {
   value = "${aws_cloudwatch_event_rule.rule.arn}"
 }
 
+# the created lambda function
 output "aws_lambda_function_arn" {
   value = "${aws_lambda_function.func.arn}"
 }
